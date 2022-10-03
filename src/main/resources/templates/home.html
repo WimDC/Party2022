@@ -6,10 +6,11 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
-<h1>Homepage</h1>
-<p>Welkom to the party.</p>
-<p th:text="${mySpecialNumber}">mySpecialNumber</p>
-<a th:href="@{/about}">about</a>
+    <div th:replace="fragments/header :: header">Header</div>
+    <h1>Homepage</h1>
+    <p>Welkom to the party.</p>
+    <p th:text="${mySpecialNumber}">mySpecialNumber</p>
+    <a th:href="@{/about}">about</a>
 
 </body>
 </html>
