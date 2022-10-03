@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Venue Details</title>
+    <title>Pay</title>
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header">Header</div>
-  <div class="row1">
-    <div class="row1content">
-      <h2><p th:text="${venueName}">venue</p></h2>
-    </div>
-    <div class="buttons"><a href="/">home</a></div>
-  </div>
+<h1>Pay</h1>
+<div class="container">
+    <p>Please pay before <span th:text="${today}"></span></p>
+    <p>Date of today <span th:text="${paydate}"></span></p>
+</div>
 </body>
 </html>
