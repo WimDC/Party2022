@@ -9,6 +9,14 @@
 <div th:replace="fragments/header :: header">Header</div>
 <h1>Venue list</h1>
 <h2>venues</h2>
+
+<div class="row1">
+    <div class="row1content">
+        <h2 th:if="${venueName}" th:text="${venueName}">venuedetails</h2>
+        <p th:unless="${venueName}">no venue was chosen</p>
+    </div>
+</div>
+
 <div th:each= "venueName: ${venueNames}">
     <a class="buttonLook mediumButton"
        th:href="@{|/venuedetails/${venueName}|}"
