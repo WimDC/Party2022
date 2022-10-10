@@ -14,7 +14,7 @@ import java.util.Date;
 @Controller
 public class HomeController {
     private final int mySpecialNumber = 35;
-    private final String[] venueNames = {"De Loods","De Club","De Hangar","Zapoi","Kuub","Cuba Libre"};
+    private final String[] venueNames = {"De Loods","De Club","De Hangar","Zapoi","Kuub","Cuba Libre","De Vanue"};
 
     @GetMapping(value = {"/","/home","/home/"})
     public String home(Model model) {
@@ -41,6 +41,14 @@ public class HomeController {
         Date today = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(today);
+        int day = today.getDay();
+        String weekend ="";
+        if (day == 6 || day == 0) {
+            weekend = "Prettig weekend, je hebt het verdiend!";
+        } else {
+            weekend = "Voor je het weet is het weekend! ";
+        }
+        model.addAttribute("weekend",weekend);
         model.addAttribute("today",format.format(today));
         c.add(Calendar.DATE,5);
         Date paydate = c.getTime();
