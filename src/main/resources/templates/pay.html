@@ -7,11 +7,11 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header">Header</div>
-<h1>Pay</h1>
 <div class="container">
-    <p>Please pay before <span th:text="${today}"></span></p>
-    <p>Date of today <span th:text="${paydate}"></span></p>
-    <p>Message: <span th:text="${weekend}"></span> </p>
+    <h1>Pay</h1>
+    <p>Please pay before <span th:text="${paydate}"></span></p>
+    <p th:if="${weekend}">Have a nice weekend!</p>
+    <p th:unless="${weekend}">Weekend is coming closer!</p>
 </div>
 </body>
 </html>

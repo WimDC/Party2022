@@ -6,12 +6,12 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header">Header</div>
-  <div class="row1">
-    <div class="row1content">
-      <h2><p th:text="${venueName}">venue</p></h2>
-    </div>
-    <div class="buttons"><a href="/">home</a></div>
-  </div>
+<div th:replace="fragments/header :: header">header</div>
+
+<div class="container">
+    <h1 th:if="${venuename}" th:text="${venuename}">venuename</h1>
+    <p th:unless="${venuename}">No venue is chosen</p>
+    <p>Welcome to the Venue Page.</p>
+</div>
 </body>
 </html>
