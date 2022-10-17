@@ -3,6 +3,13 @@ package be.thomasmore.party.model;
 public class Venue {
     private String venueName;
     private String linkMoreInfo;
+    private int capacity;
+    private boolean isFoodProvided;
+    private boolean isIndoor;
+    private boolean isOutdoor;
+    private boolean isFreeParkingAvailable;
+    private String city;
+    private int distanceFromPublicTransportInKm;
 
     public String getVenueName() {
         return venueName;
@@ -23,5 +30,17 @@ public class Venue {
     public Venue(String venueName, String linkMoreInfo) {
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
+    }
+
+    public Venue(String venueName, String linkMoreInfo, int capacity, boolean isFoodProvided, boolean isIndoor, boolean isOutdoor, boolean isFreeParkingAvailable, String city, int distanceFromPublicTransportInKm) {
+        this.venueName = venueName;
+        this.linkMoreInfo = linkMoreInfo;
+        this.capacity = capacity;
+        this.isFoodProvided = isFoodProvided;
+        this.isIndoor = isIndoor;
+        this.isOutdoor = isOutdoor;
+        this.isFreeParkingAvailable = isFreeParkingAvailable;
+        this.city = city;
+        this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
     }
 }

@@ -18,11 +18,11 @@ public class HomeController {
     private final int mySpecialNumber = 35;
     private final String [] venuenames = {"Carré", "Zillion", "Cherrymoon", "Boccaccio", "Carat"};
     private final Venue [] venues = {
-            new Venue("Carré","Website Carré"),
-            new Venue("Zillion","Website Zillion"),
-            new Venue("Cherrymoon","Website Cherrymoon"),
-            new Venue("Boccaccio","Website Boccaccio"),
-            new Venue("Carat","Website Carat")
+            new Venue("Carré","Website Carré",100,true,true,false,false,"Willebroek",5),
+            new Venue("Zillion","Website Zillion",250,true,true,false,false,"Antwerpen",1),
+            new Venue("Cherrymoon","Website Cherrymoon",150,true,true,false,false,"Knokke",4),
+            new Venue("Boccaccio","Website Boccaccio",125,false,false,true,true,"Ergens",10),
+            new Venue("Carat","Website Carat",225,false,true,false,true,"Waarschijnlijk",15)
     };
 
     @GetMapping(value = {"/", "/home", "/home/"})
