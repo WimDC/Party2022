@@ -103,3 +103,11 @@ p{
 .buttonlist li a:hover{
     background-color: deeppink;
 }
+.linkerkantvenuedetails{
+    float:left;
+    width:30%;
+}
+.rechterkantvenuedetails{
+    float:left;
+    width:50%;
+}

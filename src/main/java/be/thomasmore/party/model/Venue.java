@@ -32,6 +32,34 @@ public class Venue {
         this.linkMoreInfo = linkMoreInfo;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public boolean isFoodProvided() {
+        return isFoodProvided;
+    }
+
+    public boolean isIndoor() {
+        return isIndoor;
+    }
+
+    public boolean isOutdoor() {
+        return isOutdoor;
+    }
+
+    public boolean isFreeParkingAvailable() {
+        return isFreeParkingAvailable;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public int getDistanceFromPublicTransportInKm() {
+        return distanceFromPublicTransportInKm;
+    }
+
     public Venue(String venueName, String linkMoreInfo, int capacity, boolean isFoodProvided, boolean isIndoor, boolean isOutdoor, boolean isFreeParkingAvailable, String city, int distanceFromPublicTransportInKm) {
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
