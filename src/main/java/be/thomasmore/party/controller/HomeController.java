@@ -1,6 +1,7 @@
 package be.thomasmore.party.controller;
 
 
+import be.thomasmore.party.model.Venue;
 import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,13 @@ import java.util.Date;
 public class HomeController {
     private final int mySpecialNumber = 35;
     private final String [] venuenames = {"Carré", "Zillion", "Cherrymoon", "Boccaccio", "Carat"};
+    private final Venue [] venues = {
+            new Venue("Carré","Website Carré"),
+            new Venue("Zillion","Website Zillion"),
+            new Venue("Cherrymoon","Website Cherrymoon"),
+            new Venue("Boccaccio","Website Boccaccio"),
+            new Venue("Carat","Website Carat")
+    };
 
     @GetMapping(value = {"/", "/home", "/home/"})
     public String home (Model model){
@@ -54,7 +62,7 @@ public class HomeController {
 
     @GetMapping("/venuelist")
     public String venuelist (Model model){
-        model.addAttribute("venuenames",venuenames);
+        model.addAttribute("venues",venues);
         return "venuelist";
     }
 
