@@ -1,13 +1,19 @@
 package be.thomasmore.party.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Venue {
+    @Id
+    private int id;
     private String venueName;
     private String linkMoreInfo;
     private int capacity;
-    private boolean isFoodProvided;
-    private boolean isIndoor;
-    private boolean isOutdoor;
-    private boolean isFreeParkingAvailable;
+    private boolean FoodProvided;
+    private boolean Indoor;
+    private boolean Outdoor;
+    private boolean FreeParkingAvailable;
     private String city;
     private int distanceFromPublicTransportInKm;
 
@@ -27,6 +33,9 @@ public class Venue {
         return linkMoreInfo;
     }
 
+    public Venue() {
+    }
+
     public Venue(String venueName, String linkMoreInfo) {
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
@@ -37,19 +46,19 @@ public class Venue {
     }
 
     public boolean isFoodProvided() {
-        return isFoodProvided;
+        return FoodProvided;
     }
 
     public boolean isIndoor() {
-        return isIndoor;
+        return Indoor;
     }
 
     public boolean isOutdoor() {
-        return isOutdoor;
+        return Outdoor;
     }
 
     public boolean isFreeParkingAvailable() {
-        return isFreeParkingAvailable;
+        return FreeParkingAvailable;
     }
 
     public String getCity() {
@@ -64,10 +73,10 @@ public class Venue {
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
         this.capacity = capacity;
-        this.isFoodProvided = isFoodProvided;
-        this.isIndoor = isIndoor;
-        this.isOutdoor = isOutdoor;
-        this.isFreeParkingAvailable = isFreeParkingAvailable;
+        this.FoodProvided = isFoodProvided;
+        this.Indoor = isIndoor;
+        this.Outdoor = isOutdoor;
+        this.FreeParkingAvailable = isFreeParkingAvailable;
         this.city = city;
         this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
     }
