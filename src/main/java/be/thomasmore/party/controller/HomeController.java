@@ -2,7 +2,9 @@ package be.thomasmore.party.controller;
 
 
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.VenueRepository;
 import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,8 @@ public class HomeController {
             new Venue("Boccaccio","Website Boccaccio",125,false,false,true,true,"Ergens",10),
             new Venue("Carat","Website Carat",225,false,true,false,true,"Waarschijnlijk",15)
     };
+    @Autowired
+    private VenueRepository venueRepository;
 
     @GetMapping(value = {"/", "/home", "/home/"})
     public String home (Model model){
@@ -62,6 +66,7 @@ public class HomeController {
 
     @GetMapping("/venuelist")
     public String venuelist (Model model){
+        Iterable<Venue> venues = venueRepository.findAll();
         model.addAttribute("venues",venues);
         return "venuelist";
     }
@@ -96,6 +101,12 @@ public class HomeController {
         model.addAttribute("prevIndex", prevIndex);
         model.addAttribute("nextIndex", nextIndex);
         return "venuedetailsbyindex";
+    }
+
+    @GetMapping({"/venuedetailsbyid","/venuedetailsbyid/{id}"})
+    public String venueDetailsById(Model model, @PathVariable(required = false) Integer id) {
+        model.addAttribute("venue", venueRepository.findById(id).get());
+        return "venuedetails";
     }
 
 }
