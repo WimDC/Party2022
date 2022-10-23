@@ -80,7 +80,7 @@ public class HomeController {
     @GetMapping({"/venuedetailsbyindex","/venuedetailsbyindex/","/venuedetailsbyindex/{venueindex}"})
     public String venuedetailsbyindex(Model model, @PathVariable(required = false) String venueindex){
         Venue venue = null;
-        if(venueindex !=null && Integer.parseInt(venueindex)%1 == 0 && Integer.parseInt(venueindex)>= 0 && Integer.parseInt(venueindex)< 5 )
+        if(venueindex !=null && Integer.parseInt(venueindex)%1 == 0 && Integer.parseInt(venueindex)>= 0 && Integer.parseInt(venueindex)< venuenames.length )
         {
             //get venue data here
             venue = venues[Integer.parseInt(venueindex)];
@@ -92,7 +92,7 @@ public class HomeController {
         }
 
         int nextIndex = Integer.parseInt(venueindex)+1;
-        if(nextIndex >4)
+        if(nextIndex >venuenames.length-1)
         {
             nextIndex = 0;
         }
@@ -105,7 +105,7 @@ public class HomeController {
 
     @GetMapping({"/venuedetailsbyid","/venuedetailsbyid/{id}"})
     public String venueDetailsById(Model model, @PathVariable(required = false) Integer id) {
-        model.addAttribute("venue", venueRepository.findById(id).get());
+        model.addAttribute("venue", venueRepository.findById(2).get());
         return "venuedetails";
     }
 
