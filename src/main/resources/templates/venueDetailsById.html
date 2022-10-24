@@ -9,7 +9,7 @@
 <div th:replace="fragments/header :: header">header</div>
 
 <div class="border">
-    <a th:href="@{|/venuedetailsbyid/${prevIndex}|}" href="#" class="nextprev">&lt;</a>
+    <a th:href="@{|/venuedetailsbyid/${prevId}|}" href="#" class="nextprev">&lt;</a>
 </div>
 <div class="container">
     <h1 th:text="${venueTitle}">venueTitle</h1>
@@ -36,7 +36,7 @@
     <p th:text="${venue.getDistanceFromPublicTransportInKm()}">Distance from public transport in km</p>
 </div>
 <div class="border">
-    <a th:href="@{|/venuedetailsbyid/${nextIndex}|}" href="#" class="nextprev">&gt;</a>
+    <a th:href="@{|/venuedetailsbyid/${nextId}|}" href="#" class="nextprev">&gt;</a>
 </div>
 </body>
 </html>

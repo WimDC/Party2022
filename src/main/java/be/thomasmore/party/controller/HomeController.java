@@ -14,6 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -105,8 +106,32 @@ public class HomeController {
 
     @GetMapping({"/venuedetailsbyid","/venuedetailsbyid/{id}"})
     public String venueDetailsById(Model model, @PathVariable(required = false) Integer id) {
-        model.addAttribute("venue", venueRepository.findById(id).get());
-        return "venuedetails";
+
+        Optional oVenue = null;
+        Venue venue = null;
+        int venueCount = 0;
+
+        venueCount = (int) venueRepository.count();
+
+        oVenue = venueRepository.findById(id);
+        if (oVenue.isPresent()) {
+            venue = (Venue) oVenue.get();
+        }
+
+        int prevId = id-1 ;
+        if(prevId<1){
+            prevId = venueCount;
+        }
+
+        int nextId = id+1;
+        if(nextId>venueCount){
+            nextId = 1;
+        }
+
+        model.addAttribute("nextId", nextId);
+        model.addAttribute("prevId",prevId);
+        model.addAttribute("venue", venue);
+        return "venuedetailsbyid";
     }
 
 }
