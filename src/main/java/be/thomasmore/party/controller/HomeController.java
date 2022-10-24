@@ -110,8 +110,16 @@ public class HomeController {
         Optional oVenue = null;
         Venue venue = null;
         int venueCount = 0;
+        boolean idNull = false;
 
         venueCount = (int) venueRepository.count();
+
+        if(id == null || id != (int) id){
+            id = 0;
+        }
+        if(id <= 0 || id > venueCount){
+            idNull = true;
+        }
 
         oVenue = venueRepository.findById(id);
         if (oVenue.isPresent()) {
@@ -131,6 +139,7 @@ public class HomeController {
         model.addAttribute("nextId", nextId);
         model.addAttribute("prevId",prevId);
         model.addAttribute("venue", venue);
+        model.addAttribute("idNull",idNull);
         return "venuedetailsbyid";
     }
 

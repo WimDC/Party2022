@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Venue details</title>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <link href="../static/css/style.css" media="all" rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header">header</div>
 
-<div class="border">
-    <a th:href="@{|/venuedetailsbyid/${prevId}|}" href="#" class="nextprev">&lt;</a>
+<div th:if="${venue}" class="border">
+    <a class="nextprev" href="#" th:href="@{|/venuedetailsbyid/${prevId}|}">&lt;</a>
 </div>
-<div class="container">
-    <h1 th:text="${venueTitle}">venueTitle</h1>
-    <p>Welcome to the Venue Index Page.</p>
+<div th:if="${venue}" class="container">
+    <h1 th:text="${venue.getVenueName()}">venueTitle</h1>
 </div>
-<div class="linkerkantvenuedetails">
+<div th:if="${venue}" class="linkerkantvenuedetails">
     <p>info:</p>
     <p>capacity:</p>
     <p>food provided:</p>
@@ -25,7 +24,7 @@
     <p>city:</p>
     <p>distance from public transport:</p>
 </div>
-<div class="rechterkantvenuedetails">
+<div th:if="${venue}" class="rechterkantvenuedetails">
     <p th:text="${venue.getLinkMoreInfo()}"> Get more info</p>
     <p th:text="${venue.getCapacity()}">Capacity</p>
     <p th:text="${venue.isFoodProvided()}">Is food provided</p>
@@ -35,8 +34,10 @@
     <p th:text="${venue.getCity()}">City</p>
     <p th:text="${venue.getDistanceFromPublicTransportInKm()}">Distance from public transport in km</p>
 </div>
-<div class="border">
-    <a th:href="@{|/venuedetailsbyid/${nextId}|}" href="#" class="nextprev">&gt;</a>
+<p th:unless="${venue}">No valid venue is chosen</p>
+<p th:if="${idNull}">No valid venue is chosen</p>
+<div th:if="${venue}" class="border">
+    <a class="nextprev" href="#" th:href="@{|/venuedetailsbyid/${nextId}|}">&gt;</a>
 </div>
 </body>
 </html>
