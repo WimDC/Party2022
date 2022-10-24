@@ -9,8 +9,8 @@
 <div th:replace="fragments/header :: header">header</div>
 
 <div class="container">
-    <h1 th:if="${venuename}" th:text="${venuename}">venuename</h1>
-    <p th:unless="${venuename}">No venue is chosen</p>
+    <h1 th:if="${venue}" th:text="${venue.getVenueName()}">venuename</h1>
+    <p th:unless="${venue}">No venue is chosen</p>
     <p>Welcome to the Venue Page.</p>
 </div>
 </body>
