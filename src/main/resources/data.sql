@@ -77,6 +77,7 @@ insert into VENUE (
 values (
            11, 'Kruidtuin', 'https://www.mechelen.be/kruidtuin',
            500, false, false, true, false, 'Mechelen', 1);
+
 INSERT INTO ARTIST (
     ID, ARTIST_NAME, BIO, GENRE, LINK_MORE_INFO, PORTFOLIO)
 VALUES (
