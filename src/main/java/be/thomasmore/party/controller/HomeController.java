@@ -1,7 +1,9 @@
 package be.thomasmore.party.controller;
 
 
+import be.thomasmore.party.model.Artist;
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.ArtistRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class HomeController {
     };
     @Autowired
     private VenueRepository venueRepository;
+    @Autowired
+    private ArtistRepository artistRepository;
 
     @GetMapping(value = {"/", "/home", "/home/"})
     public String home (Model model){
@@ -68,8 +72,14 @@ public class HomeController {
     @GetMapping("/venuelist")
     public String venuelist (Model model){
         Iterable<Venue> venues = venueRepository.findAll();
-        model.addAttribute("venues",venues);
+        model.addAttribute("venues", venues);
         return "venuelist";
+    }
+    @GetMapping("/artistlist")
+    public String artistlist (Model model){
+        Iterable<Artist> artists = artistRepository.findAll();
+        model.addAttribute("artists",artists);
+        return "artistlist";
     }
 
     @GetMapping({"/venuedetails","/venuedetails/","/venuedetails/{venuename}"})
@@ -142,5 +152,4 @@ public class HomeController {
         model.addAttribute("idNull",idNull);
         return "venuedetailsbyid";
     }
-
 }
