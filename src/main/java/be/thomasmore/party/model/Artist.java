@@ -1,6 +1,11 @@
 package be.thomasmore.party.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Artist {
+    @Id
     private int id;
     private String artistName;
     private String linkMoreInfo;
