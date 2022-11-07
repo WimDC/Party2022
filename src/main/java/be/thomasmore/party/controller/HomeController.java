@@ -152,4 +152,42 @@ public class HomeController {
         model.addAttribute("idNull",idNull);
         return "venuedetailsbyid";
     }
+    @GetMapping({"/artistdetailsbyid","/artistdetailsbyid/{id}"})
+    public String artistDetailsById(Model model, @PathVariable(required = false) Integer id) {
+
+        Optional oArtist = null;
+        Artist artist = null;
+        int artistCount = 0;
+        boolean idNull = false;
+
+        artistCount = (int) artistRepository.count();
+
+        if(id == null || id != (int) id){
+            id = 0;
+        }
+        if(id <= 0 || id > artistCount){
+            idNull = true;
+        }
+
+        oArtist = artistRepository.findById(id);
+        if (oArtist.isPresent()) {
+            artist = (Artist) oArtist.get();
+        }
+
+        int prevId = id-1 ;
+        if(prevId<1){
+            prevId = artistCount;
+        }
+
+        int nextId = id+1;
+        if(nextId>artistCount){
+            nextId = 1;
+        }
+
+        model.addAttribute("nextId", nextId);
+        model.addAttribute("prevId",prevId);
+        model.addAttribute("artist", artist);
+        model.addAttribute("idNull",idNull);
+        return "artistdetailsbyid";
+    }
 }
