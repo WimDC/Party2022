@@ -1,7 +1,8 @@
 package be.thomasmore.party.repositories;
-
+import be.thomasmore.party.model.Artist;
 import be.thomasmore.party.model.Venue;
 import org.springframework.data.repository.CrudRepository;
-
 public interface VenueRepository extends CrudRepository<Venue, Integer> {
+    Iterable<Venue> findByOutdoor(boolean outdoor);
+
 }

@@ -190,4 +190,11 @@ public class HomeController {
         model.addAttribute("idNull",idNull);
         return "artistdetailsbyid";
     }
+    @GetMapping("venuelist/outdoor/yes")
+    public String venuelistOutdoorYes (Model model)
+    {
+        Iterable<Venue> venues = venueRepository.findByOutdoor(true);
+        model.addAttribute("venues", venues);
+        return "venuelist";
+    }
 }

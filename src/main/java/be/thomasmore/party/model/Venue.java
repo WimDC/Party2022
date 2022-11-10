@@ -10,12 +10,14 @@ public class Venue {
     private String venueName;
     private String linkMoreInfo;
     private int capacity;
-    private boolean FoodProvided;
-    private boolean Indoor;
-    private boolean Outdoor;
-    private boolean FreeParkingAvailable;
+    private boolean foodProvided;
+    private boolean indoor;
+    private boolean outdoor;
+    private boolean freeParkingAvailable;
     private String city;
     private int distanceFromPublicTransportInKm;
+
+
 
     public String getVenueName() {
         return venueName;
@@ -46,19 +48,19 @@ public class Venue {
     }
 
     public boolean isFoodProvided() {
-        return FoodProvided;
+        return foodProvided;
     }
 
     public boolean isIndoor() {
-        return Indoor;
+        return indoor;
     }
 
     public boolean isOutdoor() {
-        return Outdoor;
+        return outdoor;
     }
 
     public boolean isFreeParkingAvailable() {
-        return FreeParkingAvailable;
+        return freeParkingAvailable;
     }
 
     public String getCity() {
@@ -73,10 +75,10 @@ public class Venue {
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
         this.capacity = capacity;
-        this.FoodProvided = isFoodProvided;
-        this.Indoor = isIndoor;
-        this.Outdoor = isOutdoor;
-        this.FreeParkingAvailable = isFreeParkingAvailable;
+        this.foodProvided = isFoodProvided;
+        this.indoor = isIndoor;
+        this.outdoor = isOutdoor;
+        this.freeParkingAvailable = isFreeParkingAvailable;
         this.city = city;
         this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
     }
