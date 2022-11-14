@@ -190,17 +190,16 @@ public class HomeController {
         model.addAttribute("idNull",idNull);
         return "artistdetailsbyid";
     }
-    @GetMapping("venuelist/outdoor/yes")
-    public String venuelistOutdoorYes (Model model)
-    {
-        Iterable<Venue> venues = venueRepository.findByOutdoor(true);
-        model.addAttribute("venues", venues);
-        return "venuelist";
-    }
-    @GetMapping("venuelist/outdoor/no")
-    public String venuelistOutdoorNo (Model model)
-    {
-        Iterable<Venue> venues = venueRepository.findByOutdoor(false);
+    @GetMapping("venuelist/outdoor/{outdoor}")
+    public String venuelistOutdoor (Model model, @PathVariable(required = false) String outdoor)
+    {Iterable<Venue> venues = venueRepository.findAll();
+        if(outdoor.equals("yes")) {
+            venues = venueRepository.findByOutdoor(true);
+        }
+        else if(outdoor.equals("no")) {
+            venues = venueRepository.findByOutdoor(false);
+        }
+
         model.addAttribute("venues", venues);
         return "venuelist";
     }
