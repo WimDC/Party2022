@@ -27,7 +27,7 @@ p{
     text-decoration: none;
 }
 .buttonlookhighlight{
-    background-color: fuchsia;
+    background-color: deeppink;
     font-weight: bold;
     color: white;
     display: block;
@@ -53,6 +53,7 @@ p{
 .menubutton{
     float: left;
     margin-left: 10px;
+    width: 100px;
 
 }
 
