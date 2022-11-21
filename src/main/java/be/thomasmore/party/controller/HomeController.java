@@ -201,6 +201,7 @@ public class HomeController {
         }
 
         model.addAttribute("venues", venues);
+        model.addAttribute("outdoor", outdoor);
         return "venuelist";
     }
 }
