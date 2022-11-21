@@ -18,6 +18,41 @@ public class Venue {
     private int distanceFromPublicTransportInKm;
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setFoodProvided(boolean foodProvided) {
+        this.foodProvided = foodProvided;
+    }
+
+    public void setIndoor(boolean indoor) {
+        this.indoor = indoor;
+    }
+
+    public void setOutdoor(boolean outdoor) {
+        this.outdoor = outdoor;
+    }
+
+    public void setFreeParkingAvailable(boolean freeParkingAvailable) {
+        this.freeParkingAvailable = freeParkingAvailable;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDistanceFromPublicTransportInKm(int distanceFromPublicTransportInKm) {
+        this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
+    }
 
     public String getVenueName() {
         return venueName;

@@ -22,9 +22,16 @@
         <a class="buttonlook menubutton" th:classappend="${indoor == 'no'} ? buttonlookhighlight" th:href="@{/venuelist/indoor/no}">no</a>
         <a class="buttonlook menubutton" th:classappend="${indoor == 'all'} ? buttonlookhighlight" th:href="@{/venuelist/indoor/all}"> all</a>
     </div>
+    <div class="sublist">
+        <p class="menubutton">Size: </p>
+        <a class="buttonlook menubutton" th:classappend="${size == 'S'} ? buttonlookhighlight" th:href="@{/venuelist/size/S}">S</a>
+        <a class="buttonlook menubutton" th:classappend="${size == 'M'} ? buttonlookhighlight" th:href="@{/venuelist/size/M}">M</a>
+        <a class="buttonlook menubutton" th:classappend="${size == 'L'} ? buttonlookhighlight" th:href="@{/venuelist/size/L}"> L</a>
+        <a class="buttonlook menubutton" th:classappend="${size == 'all'} ? buttonlookhighlight" th:href="@{/venuelist/size/all}"> all</a>
+    </div>
     <ul class="buttonlist">
         <li th:each="venue, iStat:${venues}">
-            <a th:href="@{|/venuedetailsbyid/*{iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
+            <a th:href="@{|/venuedetailsbyid/*{venue.getId()}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
         </li>
     </ul>
 </div>
