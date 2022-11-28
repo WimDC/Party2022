@@ -1,21 +1,14 @@
 package be.thomasmore.party.controller;
 
 
-import be.thomasmore.party.model.Artist;
 import be.thomasmore.party.model.Venue;
-import be.thomasmore.party.repositories.ArtistRepository;
 import be.thomasmore.party.repositories.VenueRepository;
-import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -30,14 +23,8 @@ public class VenueController {
         return "venuelist";
     }
 
-    @GetMapping({"/venuedetails", "/venuedetails/", "/venuedetails/{venuename}"})
-    public String venuedetails(Model model, @PathVariable(required = false) String venuename) {
-        model.addAttribute("venuename", venuename);
-        return "venuedetails";
-    }
-
-    @GetMapping({"/venuedetailsbyid", "/venuedetailsbyid/{id}"})
-    public String venueDetailsById(Model model, @PathVariable(required = false) Integer id) {
+    @GetMapping({"/venuedetails", "/venuedetails/", "/venuedetails/{id}"})
+    public String venueDetails(Model model, @PathVariable(required = false) Integer id) {
 
         Optional oVenue = null;
         Venue venue = null;
@@ -72,7 +59,7 @@ public class VenueController {
         model.addAttribute("prevId", prevId);
         model.addAttribute("venue", venue);
         model.addAttribute("idNull", idNull);
-        return "venuedetailsbyid";
+        return "venuedetails";
     }
     @GetMapping("venuelist/outdoor/{outdoor}")
     public String venuelistOutdoor (Model model, @PathVariable(required = false) String outdoor)

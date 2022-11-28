@@ -9,7 +9,7 @@
 <div th:replace="fragments/header :: header">header</div>
 
 <div th:if="${venue}" class="border">
-    <a class="nextprev" href="#" th:href="@{|/venuedetailsbyid/${prevId}|}">&lt;</a>
+    <a class="nextprev" href="#" th:href="@{|/venuedetails/${prevId}|}">&lt;</a>
 </div>
 <div th:if="${venue}" class="container">
     <h1 th:text="${venue.getVenueName()}">venueTitle</h1>
@@ -37,7 +37,7 @@
 <p th:unless="${venue}">No valid venue is chosen</p>
 <p th:if="${idNull}">No valid venue is chosen</p>
 <div th:if="${venue}" class="border">
-    <a class="nextprev" href="#" th:href="@{|/venuedetailsbyid/${nextId}|}">&gt;</a>
+    <a class="nextprev" href="#" th:href="@{|/venuedetails/${nextId}|}">&gt;</a>
 </div>
 </body>
 </html>
