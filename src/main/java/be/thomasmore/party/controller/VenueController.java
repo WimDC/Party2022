@@ -16,10 +16,22 @@ public class VenueController {
     @Autowired
     private VenueRepository venueRepository;
 
-    @GetMapping({"/venuelist/{venuelist}", "/venuelist"})
+    @GetMapping("/venuelist")
     public String venuelist(Model model) {
+        boolean showFilters = false;
         Iterable<Venue> venues = venueRepository.findAll();
+
         model.addAttribute("venues", venues);
+        model.addAttribute("showFilters",showFilters);
+        return "venuelist";
+    }
+    @GetMapping("/venuelist/filter")
+    public String filter(Model model) {
+        boolean showFilters = true;
+        Iterable<Venue> venues = venueRepository.findAll();
+
+        model.addAttribute("venues", venues);
+        model.addAttribute("showFilters",showFilters);
         return "venuelist";
     }
 
@@ -59,7 +71,6 @@ public class VenueController {
         model.addAttribute("prevId", prevId);
         model.addAttribute("venue", venue);
         model.addAttribute("idNull", idNull);
-        model.addAttribute("showFilters",showFilters);
         return "venuedetails";
     }
 }
