@@ -10,25 +10,7 @@
 
 <div class="container">
     <h1>Venue list</h1>
-    <div class="sublist">
-        <p class="menubutton">Outdoor: </p>
-        <a class="buttonlook menubutton" th:classappend="${outdoor == 'yes'} ? buttonlookhighlight" th:href="@{/venuelist/outdoor/yes}">yes</a>
-        <a class="buttonlook menubutton" th:classappend="${outdoor == 'no'} ? buttonlookhighlight" th:href="@{/venuelist/outdoor/no}">no</a>
-        <a class="buttonlook menubutton" th:classappend="${outdoor == 'all'} ? buttonlookhighlight" th:href="@{/venuelist/outdoor/all}"> all</a>
-    </div>
-    <div class="sublist">
-        <p class="menubutton">Indoor: </p>
-        <a class="buttonlook menubutton" th:classappend="${indoor == 'yes'} ? buttonlookhighlight" th:href="@{/venuelist/indoor/yes}">yes</a>
-        <a class="buttonlook menubutton" th:classappend="${indoor == 'no'} ? buttonlookhighlight" th:href="@{/venuelist/indoor/no}">no</a>
-        <a class="buttonlook menubutton" th:classappend="${indoor == 'all'} ? buttonlookhighlight" th:href="@{/venuelist/indoor/all}"> all</a>
-    </div>
-    <div class="sublist">
-        <p class="menubutton">Size: </p>
-        <a class="buttonlook menubutton" th:classappend="${size == 'S'} ? buttonlookhighlight" th:href="@{/venuelist/size/S}">S</a>
-        <a class="buttonlook menubutton" th:classappend="${size == 'M'} ? buttonlookhighlight" th:href="@{/venuelist/size/M}">M</a>
-        <a class="buttonlook menubutton" th:classappend="${size == 'L'} ? buttonlookhighlight" th:href="@{/venuelist/size/L}"> L</a>
-        <a class="buttonlook menubutton" th:classappend="${size == 'all'} ? buttonlookhighlight" th:href="@{/venuelist/size/all}"> all</a>
-    </div>
+    <div>tekstje</div>
     <ul class="buttonlist">
         <li th:each="venue, iStat:${venues}">
             <a th:href="@{|/venuedetails/*{venue.getId()}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
