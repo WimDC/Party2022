@@ -3,11 +3,14 @@ package be.thomasmore.party.controller;
 
 import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.VenueRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -15,6 +18,7 @@ import java.util.Optional;
 public class VenueController {
     @Autowired
     private VenueRepository venueRepository;
+    private Logger logger = LoggerFactory.getLogger(VenueController.class);
 
     @GetMapping("/venuelist")
     public String venuelist(Model model) {
@@ -27,13 +31,15 @@ public class VenueController {
         return "venuelist";
     }
     @GetMapping("/venuelist/filter")
-    public String filter(Model model) {
+    public String filter(Model model,
+                         @RequestParam(required = false) Integer minCapacity) {
+        logger.info(String.format("filter -- min=%d", minCapacity));
         boolean showFilters = true;
-        Iterable<Venue> venues = venueRepository.findAll();
-
+        if (minCapacity == null) minCapacity = 0;
+        Iterable<Venue> venues = venueRepository.findByCapacityGreaterThanEqual(minCapacity);
         model.addAttribute("venues", venues);
-        model.addAttribute("showFilters",showFilters);
-        model.addAttribute("aantal",venueRepository.count());
+        model.addAttribute("showFilters", showFilters);
+        model.addAttribute("aantal", venueRepository.count());
         return "venuelist";
     }
 
