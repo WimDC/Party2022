@@ -23,6 +23,7 @@ public class VenueController {
 
         model.addAttribute("venues", venues);
         model.addAttribute("showFilters",showFilters);
+        model.addAttribute("aantal",venueRepository.count());
         return "venuelist";
     }
     @GetMapping("/venuelist/filter")
@@ -32,6 +33,7 @@ public class VenueController {
 
         model.addAttribute("venues", venues);
         model.addAttribute("showFilters",showFilters);
+        model.addAttribute("aantal",venueRepository.count());
         return "venuelist";
     }
 

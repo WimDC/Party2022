@@ -79,12 +79,13 @@ p{
     color: white;
     display: block;
     width: 800px;
-    height: 50px;
-    line-height: 50px;
     font-size: 18px;
     text-align: center;
     text-decoration: none;
     margin-bottom: 15px;
+}
+.buttonlistunderscript {
+    font-size: 10px;
 }
 
 .nextprev{
