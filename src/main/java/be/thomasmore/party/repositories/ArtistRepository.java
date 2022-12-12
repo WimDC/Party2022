@@ -4,4 +4,5 @@ import be.thomasmore.party.model.Artist;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ArtistRepository extends CrudRepository<Artist, Integer> {
+    Iterable<Artist> findArtistByArtistNameIsContainingIgnoreCase(String artistName);
 }

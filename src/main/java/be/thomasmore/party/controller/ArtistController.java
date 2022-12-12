@@ -6,11 +6,14 @@ import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.ArtistRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,11 +26,28 @@ public class ArtistController {
 
     @Autowired
     private ArtistRepository artistRepository;
+    private Logger logger = LoggerFactory.getLogger(ArtistController.class);
 
     @GetMapping("/artistlist")
     public String artistlist (Model model){
         Iterable<Artist> artists = artistRepository.findAll();
         model.addAttribute("artists",artists);
+        return "artistlist";
+    }
+    @GetMapping("/artistlist/filter")
+    public String filter (Model model,@RequestParam(required = false) String artistName){
+        Iterable<Artist> artists = null;
+        if (artistName == null || artistName == "")
+        {
+            artists = artistRepository.findAll();
+        }
+        else{
+            artists = artistRepository.findArtistByArtistNameIsContainingIgnoreCase(artistName);
+        }
+        boolean showFilters = true;
+        model.addAttribute("artists",artists);
+        model.addAttribute("showFilters",showFilters);
+        model.addAttribute("aantal", artistRepository.count());
         return "artistlist";
     }
 
