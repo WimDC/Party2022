@@ -38,7 +38,7 @@ public class VenueController {
         boolean showFilters = true;
         if (minCapacity == null) minCapacity = 0;
         if (maxCapacity == null) maxCapacity = 0;
-        Iterable<Venue> venues = venueRepository.findByCapacityBetween(minCapacity, maxCapacity);
+        Iterable<Venue> venues = venueRepository.findByCapacityBetweenQuery(minCapacity, maxCapacity);
         model.addAttribute("venues", venues);
         model.addAttribute("showFilters", showFilters);
         model.addAttribute("aantal", venueRepository.count());
