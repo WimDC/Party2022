@@ -42,7 +42,7 @@ public class ArtistController {
             artists = artistRepository.findAll();
         }
         else{
-            artists = artistRepository.findArtistByArtistNameIsContainingIgnoreCase(artistName);
+            artists = artistRepository.findArtistByArtistName(artistName);
         }
         boolean showFilters = true;
         model.addAttribute("artists",artists);
