@@ -32,13 +32,13 @@ public class VenueController {
     }
     @GetMapping("/venuelist/filter")
     public String filter(Model model,
-                         @RequestParam(required = false) Integer minCapacity, Integer maxCapacity) {
+                         @RequestParam(required = false) Integer minCapacity, Integer maxCapacity, Integer maxDistance, boolean foodProvided, boolean indoor, boolean outdoor) {
         logger.info(String.format("filter -- min=%d", minCapacity));
         logger.info(String.format("filter -- max=%d", maxCapacity));
         boolean showFilters = true;
         if (minCapacity == null) minCapacity = 0;
         if (maxCapacity == null) maxCapacity = 0;
-        Iterable<Venue> venues = venueRepository.findByCapacityBetweenQuery(minCapacity, maxCapacity);
+        Iterable<Venue> venues = venueRepository.findByFilter(minCapacity, maxCapacity, maxDistance, foodProvided, indoor, outdoor);
         model.addAttribute("venues", venues);
         model.addAttribute("showFilters", showFilters);
         model.addAttribute("aantal", venueRepository.count());
