@@ -2,6 +2,7 @@ package be.thomasmore.party.controller;
 
 
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.PartyRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,8 @@ import java.util.Optional;
 public class VenueController {
     @Autowired
     private VenueRepository venueRepository;
+    @Autowired
+    private PartyRepository partyRepository;
     private Logger logger = LoggerFactory.getLogger(VenueController.class);
 
     @GetMapping("/venuelist")

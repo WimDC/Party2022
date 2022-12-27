@@ -33,10 +33,10 @@ public class PartyController {
 
         Optional<Party> optionalParty = partyRepository.findById(id);
         if (optionalParty.isPresent()) {
-            long nrOfPartys = partyRepository.count();
+            long nrOfParties = partyRepository.count();
             model.addAttribute("party", optionalParty.get());
-            model.addAttribute("prevId", id > 1 ? id - 1 : nrOfPartys);
-            model.addAttribute("nextId", id < nrOfPartys ? id + 1 : 1);
+            model.addAttribute("prevId", id > 1 ? id - 1 : nrOfParties);
+            model.addAttribute("nextId", id < nrOfParties ? id + 1 : 1);
         }
         return "partydetails";
     }
