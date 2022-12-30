@@ -1,6 +1,7 @@
 package be.thomasmore.party.controller;
 
 
+import be.thomasmore.party.model.Party;
 import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.PartyRepository;
 import be.thomasmore.party.repositories.VenueRepository;
@@ -68,6 +69,8 @@ public class VenueController {
         oVenue = venueRepository.findById(id);
         if (oVenue.isPresent()) {
             venue = (Venue) oVenue.get();
+            Iterable<Party> parties = partyRepository.findByVenue(venue);
+            model.addAttribute("parties", parties);
         }
 
         int prevId = id - 1;
