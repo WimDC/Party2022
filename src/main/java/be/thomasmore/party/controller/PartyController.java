@@ -1,4 +1,4 @@
-package be.thomasmore.party.controllers;
+package be.thomasmore.party.controller;
 
 import be.thomasmore.party.model.Party;
 import be.thomasmore.party.repositories.PartyRepository;
