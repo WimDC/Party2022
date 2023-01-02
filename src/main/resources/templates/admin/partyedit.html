@@ -23,6 +23,14 @@
                     <label for="partyName">name: </label>
                     <input id="partyName" th:field="*{name}">
                 </div>
+                <div>
+                    <label for="venue">venue: </label>
+                    <select id="venue" th:name="venueId">
+                        <option th:each="v:${venues}" th:value="${v.id}"
+                                th:text="${v.venueName}" th:selected="${v.id==party.venue.id}">one venue
+                        </option>
+                    </select>
+                </div>
             </div>
             <div>
                 <label for="date">date <i>(dd/mm/yyyy)</i>: </label>
@@ -32,18 +40,19 @@
                 Free Party!
             </div>
             <div>
-                <label for="pricePresaleInEur" class="infoLineName">price (presale): </label>
+                <label for="pricePresaleInEur">price (presale): </label>
                 <input id="pricePresaleInEur" th:field="*{pricePresaleInEur}">
                 &nbsp;&euro;
             </div>
             <div>
-                <label for="priceInEur" class="infoLineName">price: </label>
+                <label for="priceInEur">price: </label>
                 <input id="priceInEur" th:field="*{priceInEur}">
                 &nbsp;&euro;
             </div>
             <div>
-                <label for="extraInfo" class="infoLineName">extra info: </label>
-                <input id="extraInfo"  th:field="*{extraInfo}">
+                <label for="extraInfo">extra info: </label>
+                <textarea id="extraInfo" th:field="*{extraInfo}" cols="25">extraInfo
+                </textarea>
             </div>
             <div>
                 <label for="doors">doors <i>(HH:mm)</i>: </label>

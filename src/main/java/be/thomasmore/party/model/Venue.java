@@ -117,4 +117,7 @@ public class Venue {
         this.city = city;
         this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
     }
+    public Venue(Integer id) {
+        this.id = id;
+    }
 }
