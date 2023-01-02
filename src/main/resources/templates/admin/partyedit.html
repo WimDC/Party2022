@@ -12,6 +12,7 @@
 <div class="row1">
     <div class="row1content" th:if="${party}" th:object="${party}">
         <h2 th:text="*{name}">partydetails</h2>
+        <div th:if="${#fields.hasErrors('*')}">ERROR - data is not saved</div>
         <h3>
             <span th:text="*{#dates.format(date, 'dd/mm/yyyy')}">date</span>
             in
@@ -21,7 +22,7 @@
             <div>
                 <div>
                     <label for="partyName">name: </label>
-                    <input id="partyName" th:field="*{name}">
+                    <input id="partyName" th:field="*{name}" th:errorclass="fieldError">
                 </div>
                 <div>
                     <label for="venue">venue: </label>

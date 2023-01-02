@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.Validation;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,8 +41,13 @@ public class AdminController {
     @PostMapping("/partyedit/{id}")
     public String partyEditPost(Model model,
                                 @PathVariable int id,
-                                @ModelAttribute("party") Party party, @RequestParam Integer venueId) {
+                                @Valid @ModelAttribute("party") Party party,
+                                BindingResult bindingResult, @RequestParam Integer venueId) {
         logger.info("partyEditPost " + id + "new name = " + party.getName());
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("venues", venueRepository.findAll());
+            return "admin/partyedit";
+        }
         if (venueId != null && party.getVenue().getId() != venueId) {
             party.setVenue(new Venue(venueId));
         }

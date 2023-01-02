@@ -1,9 +1,9 @@
 package be.thomasmore.party.model;
 
-import be.thomasmore.party.model.Venue;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Date;
 
@@ -13,6 +13,7 @@ public class Party {
     @SequenceGenerator(name = "party_generator", sequenceName = "party_seq", allocationSize = 1)
     @Id
     private Integer id;
+    @NotBlank
     private String name;
     private Integer pricePresaleInEur;
     private Integer priceInEur;
