@@ -1,6 +1,7 @@
 package be.thomasmore.party.model;
 
 import be.thomasmore.party.model.Venue;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -15,6 +16,7 @@ public class Party {
     private Integer priceInEur;
     private String extraInfo;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     @Temporal(TemporalType.TIME)
     private Date doors;

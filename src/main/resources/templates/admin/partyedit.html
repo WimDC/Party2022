@@ -24,6 +24,10 @@
                     <input id="partyName" th:field="*{name}">
                 </div>
             </div>
+            <div>
+                <label for="date">date <i>(yyyy-mm-dd)</i>: </label>
+                <input id="date" th:field="*{date}">
+            </div>
             <div th:unless="*{pricePresaleInEur!=null || priceInEur!=null}">
                 Free Party!
             </div>
