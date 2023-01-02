@@ -10,8 +10,7 @@
 
 
 <div>
-  <div th:if="${party}">
-
+  <div th:if="${party}" th:object="${party}">
     <div>
       <a th:href="@{|/partydetails/${party.id}/prev|}">&lt;</a>
     </div>
@@ -19,40 +18,40 @@
       <a th:href="@{|/partydetails/${party.id}/next|}">&gt;</a>
     </div>
     <div>
-      <a th:href="@{|/admin/partyedit/${party.id}|}">edit</a>
+      <a th:href="@{|/admin/partyedit/*{id}|}">edit</a>
     </div>
-    <h2 th:text="${party.name}">partydetails</h2>
+    <h2 th:text="*{name}">partydetails</h2>
 
     <h3>
-      <span th:text="${party.date}">date</span>
+      <span th:text="*{date}">date</span>
       in
-      <a th:href="@{|/venuedetails/${party.venue.id}|}" th:text="${party.venue.venueName}">venue</a>
+      <a th:href="@{|/venuedetails/*{venue.id}|}" th:text="*{venue.venueName}">venue</a>
     </h3>
 
     <div>
-      <div th:unless="${party.pricePresaleInEur!=null || party.priceInEur!=null}">
+      <div th:unless="*{pricePresaleInEur!=null || priceInEur!=null}">
         Free Party!
       </div>
       <div>
         <div>where:</div>
-        <div th:text="|${party.venue.city} (${party.venue.distanceFromPublicTransportInKm} km from public transport)|">
+        <div th:text="|*{venue.city} (*{venue.distanceFromPublicTransportInKm} km from public transport)|">
           city and distance
         </div>
       </div>
-      <div th:if="${party.pricePresaleInEur!=null || party.priceInEur!=null}">
+      <div th:if="*{pricePresaleInEur!=null || priceInEur!=null}">
         <div>price:</div>
         <!--suppress SyntaxError -->
-        <div th:text="|${party.pricePresaleInEur}&euro; (presale) / ${party.priceInEur}&euro;|">
+        <div th:text="|*{pricePresaleInEur}&euro; (presale) / *{priceInEur}&euro;|">
           pricePresaleInEur and price
         </div>
       </div>
       <div>
         <div>doors</div>
-        <div th:text="${party.doors}">date</div>
+        <div th:text="*{doors}">date</div>
       </div>
-      <div th:if="${!party.extraInfo.isBlank()}">
+      <div th:if="*{!extraInfo.isBlank()}">
         <div>extraInfo</div>
-        <div th:text="${party.extraInfo}">extraInfo</div>
+        <div th:text="*{extraInfo}">extraInfo</div>
       </div>
     </div>
 
