@@ -23,7 +23,7 @@
     <h2 th:text="*{name}">partydetails</h2>
 
     <h3>
-      <span th:text="*{date}">date</span>
+      <span th:text="*{#dates.format(date, 'dd/mm/yyyy')}">date</span>
       in
       <a th:href="@{|/venuedetails/*{venue.id}|}" th:text="*{venue.venueName}">venue</a>
     </h3>

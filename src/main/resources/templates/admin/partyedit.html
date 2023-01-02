@@ -13,7 +13,7 @@
     <div class="row1content" th:if="${party}" th:object="${party}">
         <h2 th:text="*{name}">partydetails</h2>
         <h3>
-            <span th:text="*{date}">date</span>
+            <span th:text="*{#dates.format(date, 'dd/mm/yyyy')}">date</span>
             in
             <a th:href="@{|/venuedetails/*{venue.id}|}" th:text="*{venue.venueName}">venue</a>
         </h3>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div>
-                <label for="date">date <i>(yyyy-mm-dd)</i>: </label>
+                <label for="date">date <i>(dd/mm/yyyy)</i>: </label>
                 <input id="date" th:field="*{date}">
             </div>
             <div th:unless="*{pricePresaleInEur!=null || priceInEur!=null}">

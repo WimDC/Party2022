@@ -16,7 +16,7 @@ public class Party {
     private Integer priceInEur;
     private String extraInfo;
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
     @Temporal(TemporalType.TIME)
     private Date doors;
