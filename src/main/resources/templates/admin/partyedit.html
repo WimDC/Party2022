@@ -46,6 +46,10 @@
                 <input id="extraInfo"  th:field="*{extraInfo}">
             </div>
             <div>
+                <label for="doors">doors <i>(HH:mm)</i>: </label>
+                <input id="doors" th:field="*{doors}">
+            </div>
+            <div>
                 <div>where:</div>
                 <div th:text="|*{venue.city} (*{venue.distanceFromPublicTransportInKm} km from public transport)|">
                     city and distance
@@ -57,10 +61,6 @@
                 <div th:text="|*{pricePresaleInEur}${'&euro;'} (presale) / *{priceInEur}${'&euro;'}|">
                     pricePresaleInEur and price
                 </div>
-            </div>
-            <div>
-                <div>doors</div>
-                <div th:text="*{doors}">date</div>
             </div>
             <div th:if="*{!extraInfo.isBlank()}">
                 <div>extraInfo</div>

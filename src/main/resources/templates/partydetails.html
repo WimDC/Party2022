@@ -47,7 +47,7 @@
       </div>
       <div>
         <div>doors</div>
-        <div th:text="*{doors}">date</div>
+        <div th:text="*{#dates.format(doors, 'HH:mm')}">doors</div>
       </div>
       <div th:if="*{!extraInfo.isBlank()}">
         <div>extraInfo</div>

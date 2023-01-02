@@ -19,6 +19,7 @@ public class Party {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
     @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "HH:mm")
     private Date doors;
 
     @ManyToOne(fetch = FetchType.LAZY)
