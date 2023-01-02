@@ -21,8 +21,9 @@ public class AdminController {
     @Autowired
     private PartyRepository partyRepository;
     @ModelAttribute("party")
-    public Party findParty(@PathVariable Integer id) {
+    public Party findParty(@PathVariable(required = false) Integer id) {
         logger.info("findParty " + id);
+        if (id == null) return new Party();
         Optional<Party> optionalParty = partyRepository.findById(id);
         if (optionalParty.isPresent())
             return optionalParty.get();
@@ -46,4 +47,22 @@ public class AdminController {
         partyRepository.save(party);
         return "redirect:/partydetails/" + id;
     }
+    @GetMapping("/partynew")
+    public String partyNew(Model model) {
+        logger.info("partyNew ");
+        model.addAttribute("party", new Party());
+        model.addAttribute("venues", venueRepository.findAll());
+        return "admin/partynew";
+    }
+
+    @PostMapping("/partynew")
+    public String partyNewPost(Model model,
+                               @ModelAttribute("party") Party party,
+                               @RequestParam int venueId) {
+        logger.info("partyNewPost -- new name=" + party.getName() + ", date=" + party.getDate());
+        party.setVenue(new Venue(venueId));
+        Party newParty = partyRepository.save(party);
+        return "redirect:/partydetails/" + newParty.getId();
+    }
+
 }
