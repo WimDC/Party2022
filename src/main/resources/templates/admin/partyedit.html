@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
     <title>Let's Party!</title>
 </head>
 <body>
@@ -19,7 +19,13 @@
             in
             <a th:href="@{|/venuedetails/${party.venue.id}|}" th:text="${party.venue.venueName}">venue</a>
         </h3>
-        <div>
+        <form th:action="@{|/admin/partyedit/${party.id}|}" method="post">
+            <div>
+                <div>
+                    <label for="partyName">name: </label>
+                    <input id="partyName" name="partyName" value="name" th:value="${party.name}">
+                </div>
+            </div>
             <div th:unless="${party.pricePresaleInEur!=null || party.priceInEur!=null}">
                 Free Party!
             </div>
@@ -44,16 +50,14 @@
                 <div>extraInfo</div>
                 <div th:text="${party.extraInfo}">extraInfo</div>
             </div>
-        </div>
-
+            <div>
+                <a th:href="@{|/partydetails/${party.id}|}">cancel</a>
+                <input type="submit" value="save">
+            </div>
+        </form>
     </div>
     <div class="row1content" th:unless="${party}">
         <p>no party was chosen</p>
-    </div>
-</div>
-<div class="row1">
-    <div class="row1content">
-        <a th:href="@{|/partydetails/${party.id}|}">cancel</a>
     </div>
 </div>
 </body>
