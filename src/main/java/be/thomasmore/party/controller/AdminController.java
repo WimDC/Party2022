@@ -1,6 +1,7 @@
 package be.thomasmore.party.controller;
 import be.thomasmore.party.model.Party;
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.ArtistRepository;
 import be.thomasmore.party.repositories.PartyRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.Validation;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,8 @@ public class AdminController {
     private VenueRepository venueRepository;
     @Autowired
     private PartyRepository partyRepository;
+    @Autowired
+    private ArtistRepository artistRepository;
     @ModelAttribute("party")
     public Party findParty(@PathVariable(required = false) Integer id) {
         logger.info("findParty " + id);
@@ -38,21 +42,28 @@ public class AdminController {
                             @PathVariable int id) {
         logger.info("partyEdit " + id);
         model.addAttribute("venues", venueRepository.findAll());
+        model.addAttribute("artists", artistRepository.findAll());
         return "admin/partyedit";
     }
     @PostMapping("/partyedit/{id}")
     public String partyEditPost(Model model,
                                 @PathVariable int id,
                                 @Valid @ModelAttribute("party") Party party,
-                                BindingResult bindingResult, @RequestParam Integer venueId) {
-        logger.info("partyEditPost " + id + "new name = " + party.getName());
+                                BindingResult bindingResult,
+                                @RequestParam Integer venueId,
+                                @RequestParam(required = false) Integer[] artistIds) {
+        logger.info("partyEditPost " + id + " new name=" + party.getName() + ", date=" + party.getDate());
+        logger.info("artists " + Arrays.toString(artistIds));
         if (bindingResult.hasErrors()) {
             model.addAttribute("venues", venueRepository.findAll());
+            model.addAttribute("artists", artistRepository.findAll());
+            party.setArtists(artistRepository.findByIdInIfNotNull(artistIds));
             return "admin/partyedit";
         }
-        if (venueId != null && party.getVenue().getId() != venueId) {
+        if (venueId != null && party.getVenue().getId() !=venueId) {
             party.setVenue(new Venue(venueId));
         }
+        party.setArtists(artistRepository.findByIdInIfNotNull(artistIds));
         partyRepository.save(party);
         return "redirect:/partydetails/" + id;
     }
@@ -61,6 +72,7 @@ public class AdminController {
         logger.info("partyNew ");
         model.addAttribute("party", new Party());
         model.addAttribute("venues", venueRepository.findAll());
+        model.addAttribute("artists", artistRepository.findAll());
         return "admin/partynew";
     }
 
@@ -68,13 +80,17 @@ public class AdminController {
     public String partyNewPost(Model model,
                                @Valid @ModelAttribute("party") Party party,
                                BindingResult bindingResult,
-                               @RequestParam int venueId) {
+                               @RequestParam int venueId,
+                               @RequestParam(required = false) Integer[] artistIds) {
         logger.info("partyNewPost new name=" + party.getName() + ", date=" + party.getDate());
         if (bindingResult.hasErrors()) {
             model.addAttribute("venues", venueRepository.findAll());
+            model.addAttribute("artists", artistRepository.findAll());
+            party.setArtists(artistRepository.findByIdInIfNotNull(artistIds));
             return "admin/partynew";
         }
         party.setVenue(new Venue(venueId));
+        party.setArtists(artistRepository.findByIdInIfNotNull(artistIds));
         Party newParty = partyRepository.save(party);
         return "redirect:/partydetails/" + newParty.getId();
     }

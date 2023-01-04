@@ -46,7 +46,16 @@
                     <label for="doors">doors <i>(hh:mm)</i>: </label>
                     <input id="doors" th:field="*{doors}"  th:errorclass="fieldError">
                 </div>
-
+                <div>
+                    <label for="artists"></label>
+                    <select multiple id="artists" name="artistIds">
+                        <option value=""></option>
+                        <option th:each="artist:${artists}" value="one artist id" th:value="${artist.id}"
+                                th:text="${artist.artistName}">
+                            one artist
+                        </option>
+                    </select>
+                </div>
                 <div>
                     <a th:href="@{|/partylist|}">cancel</a>
                     <input type="submit" value="create">
