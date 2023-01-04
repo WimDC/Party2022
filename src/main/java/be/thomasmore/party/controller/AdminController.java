@@ -66,9 +66,14 @@ public class AdminController {
 
     @PostMapping("/partynew")
     public String partyNewPost(Model model,
-                               @ModelAttribute("party") Party party,
+                               @Valid @ModelAttribute("party") Party party,
+                               BindingResult bindingResult,
                                @RequestParam int venueId) {
-        logger.info("partyNewPost -- new name=" + party.getName() + ", date=" + party.getDate());
+        logger.info("partyNewPost new name=" + party.getName() + ", date=" + party.getDate());
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("venues", venueRepository.findAll());
+            return "admin/partynew";
+        }
         party.setVenue(new Venue(venueId));
         Party newParty = partyRepository.save(party);
         return "redirect:/partydetails/" + newParty.getId();

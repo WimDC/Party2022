@@ -8,13 +8,13 @@
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 <div class="row1">
-    <div class="row1content">
+    <div class="row1content" th:object="${party}">
         <h2>new party</h2>
-        <form th:action="@{|/admin/partynew|}" method="post" th:object="${party}">
+        <form th:action="@{|/admin/partynew|}" method="post">
             <div class="venueinfo">
                 <div>
                     <label for="partyName">name: </label>
-                    <input id="partyName" th:field="*{name}">
+                    <input id="partyName" th:field="*{name}"  th:errorclass="fieldError">
                 </div>
                 <div>
                     <label for="venue">venue: </label>
@@ -25,8 +25,8 @@
                     </select>
                 </div>
                 <div>
-                    <label for="date">date <i>(dd/MM/yyyy)</i>: </label>
-                    <input id="date" th:field="*{date}">
+                    <label for="date">date <i>(dd/mm/yyyy)</i>: </label>
+                    <input id="date" th:field="*{date}"  th:errorclass="fieldError">
                 </div>
                 <div>
                     <label for="pricePresaleInEur">price (presale): </label>
@@ -44,7 +44,7 @@
                 </div>
                 <div>
                     <label for="doors">doors <i>(hh:mm)</i>: </label>
-                    <input id="doors" th:field="*{doors}">
+                    <input id="doors" th:field="*{doors}"  th:errorclass="fieldError">
                 </div>
 
                 <div>

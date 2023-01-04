@@ -128,3 +128,10 @@ p{
 .sublist{
     height: 45px;
 }
+.error {
+    color: red;
+    font-size: larger;
+}
+.fieldError, input.fieldError {
+    background-color: red;
+}

@@ -35,7 +35,7 @@
             </div>
             <div>
                 <label for="date">date <i>(dd/mm/yyyy)</i>: </label>
-                <input id="date" th:field="*{date}">
+                <input id="date" th:field="*{date}" th:errorclass="fieldError">
             </div>
             <div th:unless="*{pricePresaleInEur!=null || priceInEur!=null}">
                 Free Party!
@@ -57,7 +57,7 @@
             </div>
             <div>
                 <label for="doors">doors <i>(HH:mm)</i>: </label>
-                <input id="doors" th:field="*{doors}">
+                <input id="doors" th:field="*{doors}" th:errorclass="fieldError">
             </div>
             <div>
                 <div>where:</div>
