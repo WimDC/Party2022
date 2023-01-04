@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -34,19 +35,35 @@ public class VenueController {
         model.addAttribute("aantal",venueRepository.count());
         return "venuelist";
     }
-    @GetMapping("/venuelist/filter")
-    public String filter(Model model,
-                         @RequestParam(required = false) Integer minCapacity, Integer maxCapacity, Integer maxDistance, boolean foodProvided, boolean indoor, boolean outdoor) {
-        logger.info(String.format("filter -- min=%d", minCapacity));
-        logger.info(String.format("filter -- max=%d", maxCapacity));
-        boolean showFilters = true;
-        if (minCapacity == null) minCapacity = 0;
-        if (maxCapacity == null) maxCapacity = 0;
-        Iterable<Venue> venues = venueRepository.findByFilter(minCapacity, maxCapacity, maxDistance, foodProvided, indoor, outdoor);
+    @GetMapping({"/venuelist/filter"})
+    public String venueListWithFilter(Model model,
+                                      @RequestParam(required = false) Integer minCapacity,
+                                      @RequestParam(required = false) Integer maxCapacity,
+                                      @RequestParam(required = false) Integer maxDistance,
+                                      @RequestParam(required = false) String foodProvided,
+                                      @RequestParam(required = false) String indoor,
+                                      @RequestParam(required = false) String outdoor) {
+        logger.info(String.format("venueListFilter min=%d, max=%d, distance=%d, filterFood=%s, filterIndoor=%s, filterOutdoor=%s",
+                minCapacity, maxCapacity, maxDistance, foodProvided, indoor, outdoor));
+
+        List<Venue> venues = venueRepository.findByFilter(minCapacity, maxCapacity, maxDistance,
+                filterStringToBoolean(foodProvided), filterStringToBoolean(indoor), filterStringToBoolean(outdoor));
+
         model.addAttribute("venues", venues);
-        model.addAttribute("showFilters", showFilters);
-        model.addAttribute("aantal", venueRepository.count());
+        model.addAttribute("nrOfVenues", venues.size());
+        model.addAttribute("showFilters", true);
+        model.addAttribute("minCapacity", minCapacity);
+        model.addAttribute("maxCapacity", maxCapacity);
+        model.addAttribute("maxDistance", maxDistance);
+        model.addAttribute("filterFood", foodProvided);
+        model.addAttribute("filterIndoor", indoor);
+        model.addAttribute("filterOutdoor", outdoor);
+
         return "venuelist";
+    }
+
+    private Boolean filterStringToBoolean(String filterString) {
+        return (filterString == null || filterString.equals("all")) ? null : filterString.equals("yes");
     }
 
     @GetMapping({"/venuedetails", "/venuedetails/", "/venuedetails/{id}"})

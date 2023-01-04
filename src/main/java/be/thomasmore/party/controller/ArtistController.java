@@ -42,7 +42,7 @@ public class ArtistController {
             artists = artistRepository.findAll();
         }
         else{
-            artists = artistRepository.findArtistByArtistName(artistName);
+            artists = artistRepository.findByKeyword(artistName);
         }
         boolean showFilters = true;
         model.addAttribute("artists",artists);
