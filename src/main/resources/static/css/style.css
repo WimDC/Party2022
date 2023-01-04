@@ -88,7 +88,7 @@ p{
     font-size: 10px;
 }
 
-.nextprev{
+.prev{
     margin-top: 150px;
     background-color: deeppink;
     display: block;
@@ -100,6 +100,25 @@ p{
     text-decoration: none;
     margin-left: auto;
     margin-right: auto;
+    position: fixed;
+    left: 10px;
+    top: 160px;
+}
+.next{
+    margin-top: 150px;
+    background-color: deeppink;
+    display: block;
+    width: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    right: 10px;
+    top: 160px;
 }
 
 .nextprev:hover{
@@ -134,4 +153,92 @@ p{
 }
 .fieldError, input.fieldError {
     background-color: red;
+}
+.listview {
+    float: left;
+}
+.filters {
+    margin: 15px 50px 0 0;
+    float: left;
+    width: 35%;
+}
+.row1 {
+    display: flex;
+    position: relative;
+    margin: 20px 0;
+}
+.row1content {
+    flex-grow: 4;
+    margin: 0 50px;
+}
+.cols2 {
+    position: relative;
+}
+.buttonLook {
+    background-color: magenta;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 1px 1px darkgrey;
+}
+
+.buttonLook:hover {
+    background-color: yellow;
+    color: black;
+}
+
+.buttonLook:active {
+    background-color: yellow;
+    color: black;
+}
+.filterButton {
+    margin: 20px 0;
+    padding: .5em;
+    border: none;
+    font-size: medium;
+}
+.onefilter {
+    display: flex;
+    margin: 2px 0;
+}
+
+.onefilter input {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+
+.onefilter input[type="text" i] {
+    width: 15em;
+}
+
+.onefilter input[type="number" i] {
+    width: 5em;
+}
+.venuelist {
+    float: left;
+}
+a.mediumButton {
+    display: block;
+    margin: 10px auto;
+    width: 400px;
+    font-size: 1.2em;
+    padding: 1em;
+}
+.buttonLook {
+    background-color: #EDC7CF;
+    color: #6A8E7F;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 1px 1px darkgrey;
+}
+
+.buttonLook:hover {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+}
+
+.buttonLook:active {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
 }

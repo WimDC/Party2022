@@ -34,10 +34,12 @@
     <p th:text="${venue.getCity()}">City</p>
     <p th:text="${venue.getDistanceFromPublicTransportInKm()}">Distance from public transport in km</p>
 </div>
-<div>
+<div th:if="${venue}" class="border">
+    <a class="nextprev" href="#" th:href="@{|/venuedetails/${nextId}|}">&gt;</a>
+</div>
+<div class="container">
     <div>
         <h2  th:text="|parties in ${venue.venueName}|">parties in this venue</h2>
-
         <div>
             <div th:each="party:${parties}">
                 <a th:href="@{|/partydetails/${party.id}|}">
@@ -49,8 +51,5 @@
 </div>
 <p th:unless="${venue}">No valid venue is chosen</p>
 <p th:if="${idNull}">No valid venue is chosen</p>
-<div th:if="${venue}" class="border">
-    <a class="nextprev" href="#" th:href="@{|/venuedetails/${nextId}|}">&gt;</a>
-</div>
 </body>
 </html>
