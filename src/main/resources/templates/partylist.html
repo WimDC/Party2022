@@ -12,15 +12,15 @@
     <div class="row1content">
         <div class="editButtonDiv">
         </div>
-            <h1>Partylist</h1>
-            <div>
-                <a th:href="@{|/admin/partynew|}">new</a>
-            </div>
-            <div th:each="party:${parties}">
-                <a class="buttonlook mediumButton" th:href="@{|/partydetails/${party.id}|}">
+        <h1>Partylist</h1>
+        <a class="buttonLook" th:href="@{|/admin/partynew|}">new</a>
+        <lu class="buttonlist" th:each="party:${parties}">
+            <li>
+                <a th:href="@{|/partydetails/${party.id}|}">
                     <span th:text="${party.name}">party name </span>
                 </a>
-            </div>
+            </li>
+        </lu>
     </div>
 </div>
 </body>

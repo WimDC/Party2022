@@ -21,7 +21,7 @@
                 </div>
             </form>
         </div>
-        <a class="buttonlook" th:unless="${showFilters}" href="/artistlist/filter">Filter</a>
+        <a class="buttonLook" th:unless="${showFilters}" href="/artistlist/filter">Filter</a>
         <ul class="buttonlist">
             <li th:each="artist, iStat:${artists}">
                 <a th:href="@{|/artistdetailsbyid/*{iStat.index +1}|}" th:text="|${artist.getArtistName()}|" href="">artist
