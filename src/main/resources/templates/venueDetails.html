@@ -7,49 +7,56 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header">header</div>
-
-<div th:if="${venue}" class="border">
-    <a class="nextprev" href="#" th:href="@{|/venuedetails/${prevId}|}">&lt;</a>
-</div>
-<div th:if="${venue}" class="container">
-    <h1 th:text="${venue.getVenueName()}">venueTitle</h1>
-</div>
-<div th:if="${venue}" class="linkerkantvenuedetails">
-    <p>info:</p>
-    <p>capacity:</p>
-    <p>food provided:</p>
-    <p>indoor:</p>
-    <p>outdoor:</p>
-    <p>free parking:</p>
-    <p>city:</p>
-    <p>distance from public transport:</p>
-</div>
-<div th:if="${venue}" class="rechterkantvenuedetails">
-    <p th:text="${venue.getLinkMoreInfo()}"> Get more info</p>
-    <p th:text="${venue.getCapacity()}">Capacity</p>
-    <p th:text="${venue.isFoodProvided()}">Is food provided</p>
-    <p th:text="${venue.isIndoor()}">Is indoor</p>
-    <p th:text="${venue.isOutdoor()}">Is outdoor</p>
-    <p th:text="${venue.isFreeParkingAvailable()}">Is free parking available</p>
-    <p th:text="${venue.getCity()}">City</p>
-    <p th:text="${venue.getDistanceFromPublicTransportInKm()}">Distance from public transport in km</p>
-</div>
-<div th:if="${venue}" class="border">
-    <a class="nextprev" href="#" th:href="@{|/venuedetails/${nextId}|}">&gt;</a>
-</div>
-<div class="container">
-    <div>
-        <h2  th:text="|parties in ${venue.venueName}|">parties in this venue</h2>
-        <div>
-            <div th:each="party:${parties}">
-                <a th:href="@{|/partydetails/${party.id}|}">
-                    <span th:text="${party.name}">party name </span>
-                </a>
+<div class="row1">
+    <div class="row1content">
+        <div th:if="${venue}" class="prevButtonDiv">
+            <a class="buttonLook smallButton" href="#" th:href="@{|/venuedetails/${prevId}|}">&lt;</a>
+        </div>
+        <div th:if="${venue}" class="container">
+            <h1 th:text="${venue.getVenueName()}">venueTitle</h1>
+        </div>
+        <div th:if="${venue}" class="linkerkantvenuedetails">
+            <p>info:</p>
+            <p>capacity:</p>
+            <p>food provided:</p>
+            <p>indoor:</p>
+            <p>outdoor:</p>
+            <p>free parking:</p>
+            <p>city:</p>
+            <p>distance from public transport:</p>
+        </div>
+        <div th:if="${venue}" class="rechterkantvenuedetails">
+            <p th:text="${venue.getLinkMoreInfo()}"> Get more info</p>
+            <p th:text="${venue.getCapacity()}">Capacity</p>
+            <p th:text="${venue.isFoodProvided()}">Is food provided</p>
+            <p th:text="${venue.isIndoor()}">Is indoor</p>
+            <p th:text="${venue.isOutdoor()}">Is outdoor</p>
+            <p th:text="${venue.isFreeParkingAvailable()}">Is free parking available</p>
+            <p th:text="${venue.getCity()}">City</p>
+            <p th:text="${venue.getDistanceFromPublicTransportInKm()}">Distance from public transport in km</p>
+        </div>
+        <div th:if="${venue}" class="nextButtonDiv">
+            <a class="buttonLook smallButton" href="#" th:href="@{|/venuedetails/${nextId}|}">&gt;</a>
+        </div>
+        <div class="row1">
+            <div class="row1content">
+                <div class="container">
+                    <div class="venuelist">
+                        <h2 th:text="|parties in ${venue.venueName}|">parties in this venue</h2>
+                        <div>
+                            <div th:each="party:${parties}">
+                                <a th:href="@{|/partydetails/${party.id}|}">
+                                    <span th:text="${party.name}">party name </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p th:unless="${venue}">No valid venue is chosen</p>
+                <p th:if="${idNull}">No valid venue is chosen</p>
             </div>
         </div>
     </div>
 </div>
-<p th:unless="${venue}">No valid venue is chosen</p>
-<p th:if="${idNull}">No valid venue is chosen</p>
 </body>
 </html>

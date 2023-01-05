@@ -225,20 +225,19 @@ a.mediumButton {
     font-size: 1.2em;
     padding: 1em;
 }
-.buttonLook {
-    background-color: #EDC7CF;
-    color: #6A8E7F;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 1px 1px 1px darkgrey;
+a.smallButton {
+    display: block;
+    font-size: 1em;
+    padding: 0.5em;
+}
+.prevButtonDiv {
+    position: fixed;
+    left: 10px;
+    top: 210px;
 }
 
-.buttonLook:hover {
-    background-color: #6A8E7F;
-    color: #EDC7CF;
-}
-
-.buttonLook:active {
-    background-color: #6A8E7F;
-    color: #EDC7CF;
+.nextButtonDiv {
+    position: fixed;
+    right: 10px;
+    top: 210px;
 }
