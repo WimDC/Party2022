@@ -8,15 +8,19 @@
 <body>
 <div th:replace="fragments/header :: header">header</div>
 
-<div class="container">
-    <h1>Partylist</h1>
-    <div>
-        <a th:href="@{|/admin/partynew|}">new</a>
-    </div>
-    <div th:each="party:${parties}">
-        <a th:href="@{|/partydetails/${party.id}|}">
-            <span th:text="${party.name}">party name </span>
-        </a>
+<div class="row1">
+    <div class="row1content">
+        <div class="editButtonDiv">
+        </div>
+            <h1>Partylist</h1>
+            <div>
+                <a th:href="@{|/admin/partynew|}">new</a>
+            </div>
+            <div th:each="party:${parties}">
+                <a class="buttonlook mediumButton" th:href="@{|/partydetails/${party.id}|}">
+                    <span th:text="${party.name}">party name </span>
+                </a>
+            </div>
     </div>
 </div>
 </body>

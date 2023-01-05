@@ -13,32 +13,6 @@ p{
     font-size: 12px;
 }
 
-
-
-.buttonlook{
-    background-color: #999999;
-    color: white;
-    display: block;
-    width: 150px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-}
-.buttonlookhighlight{
-    background-color: deeppink;
-    font-weight: bold;
-    color: white;
-    display: block;
-    width: 150px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-}
-
 .container{
     width:80%;
     margin-left:auto;
@@ -240,4 +214,32 @@ a.smallButton {
     position: fixed;
     right: 10px;
     top: 210px;
+}
+.editButtonDiv {
+    position: absolute;
+    right: 60px;
+}
+a.linkLook {
+    background-color: transparent;
+    color: #6A8E7F;
+}
+
+a.linkLook:hover {
+    background-color: transparent;
+    color: #989572;
+}
+.venueinfo {
+    margin: 30px 0;
+}
+.infoLine {
+    margin: 15px 0;
+    font-size: 1em;
+    display: flex;
+}
+.infoLineName {
+    width: 13em;
+}
+.infoLineValue {
+    font-size: 1.2em;
+    text-align: left;
 }

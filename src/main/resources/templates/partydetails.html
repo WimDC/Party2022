@@ -1,90 +1,86 @@
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
-  <title>Party</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Party</title>
 </head>
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 
-
-<div>
-  <div th:if="${party}" th:object="${party}">
-    <div>
-      <a th:href="@{|/partydetails/${party.id}/prev|}">&lt;</a>
-    </div>
-    <div>
-      <a th:href="@{|/partydetails/${party.id}/next|}">&gt;</a>
-    </div>
-    <div>
-      <a th:href="@{|/admin/partyedit/*{id}|}">edit</a>
-    </div>
-    <h2 th:text="*{name}">partydetails</h2>
-
-    <h3>
-      <span th:text="*{#dates.format(date, 'dd/mm/yyyy')}">date</span>
-      in
-      <a th:href="@{|/venuedetails/*{venue.id}|}" th:text="*{venue.venueName}">venue</a>
-    </h3>
-
-    <div>
-      <div th:unless="*{pricePresaleInEur!=null || priceInEur!=null}">
-        Free Party!
-      </div>
-      <div>
-        <div>where:</div>
-        <div th:text="|*{venue.city} (*{venue.distanceFromPublicTransportInKm} km from public transport)|">
-          city and distance
+<div class="row1">
+    <div class="row1content" th:if="${party}" th:object="${party}">
+        <div class="prevButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/partydetails/${party.id}/prev|}">&lt;</a>
         </div>
-      </div>
-      <div th:if="*{pricePresaleInEur!=null || priceInEur!=null}">
-        <div>price:</div>
-        <!--suppress SyntaxError -->
-        <div th:text="|*{pricePresaleInEur}&euro; (presale) / *{priceInEur}&euro;|">
-          pricePresaleInEur and price
+        <div class="nextButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/partydetails/${party.id}/next|}">&gt;</a>
         </div>
-      </div>
-      <div>
-        <div>doors</div>
-        <div th:text="*{#dates.format(doors, 'HH:mm')}">doors</div>
-      </div>
-      <div th:if="*{!extraInfo.isBlank()}">
-        <div>extraInfo</div>
-        <div th:text="*{extraInfo}">extraInfo</div>
-      </div>
+        <div class="container">
+            <div class="editButtonDiv">
+                <a class="buttonLook smallButton" th:href="@{|/admin/partyedit/*{id}|}">edit</a>
+            </div>
+            <h2 th:text="*{name}">partydetails</h2>
+            <h3>
+                <span th:text="*{#dates.format(date, 'dd/mm/yyyy')}">date</span>
+                in
+                <a class="linkLook" th:href="@{|/venuedetails/*{venue.id}|}" th:text="*{venue.venueName}">venue</a>
+            </h3>
+            <div class="venueinfo">
+                <div class="infoLine" th:unless="*{pricePresaleInEur!=null || priceInEur!=null}">
+                    Free Party!
+                </div>
+                <div class="infoLine">
+                    <div class="infoLineName">where:</div>
+                    <div class="infoLineValue"
+                         th:text="|*{venue.city} (*{venue.distanceFromPublicTransportInKm} km from public transport)|">
+                        city and distance
+                    </div>
+                </div>
+                <div class="infoLine" th:if="*{pricePresaleInEur!=null || priceInEur!=null}">
+                    <div class="infoLineName">price:</div>
+                    <!--suppress SyntaxError -->
+                    <div class="infoLineValue" th:text="|*{pricePresaleInEur}&euro; (presale) / *{priceInEur}&euro;|">
+                        pricePresaleInEur and price
+                    </div>
+                </div>
+                <div class="infoLine">
+                    <div class="infoLineName">doors</div>
+                    <div class="infoLineValue" th:text="*{#dates.format(doors, 'HH:mm')}">doors</div>
+                </div>
+                <div class="infoLine" th:if="*{!extraInfo.isBlank()}">
+                    <div class="infoLineName">extraInfo</div>
+                    <div class="infoLineValue" th:text="*{extraInfo}">extraInfo</div>
+                </div>
+            </div>
+        </div>
     </div>
-
-  </div>
-  <div th:unless="${party}">
-    <p>no party was chosen</p>
-  </div>
+    <div th:unless="${party}">
+        <p>no party was chosen</p>
+    </div>
 </div>
 <div class="row1">
-  <div class="row1content">
-    <h2>line up: </h2>
-
-    <div class="venuelist">
-      <div th:each="artist:${party.artists}">
-        <a th:href="@{|/artistdetailsbyid/${artist.id}|}">
-          <span th:text="${artist.artistName}">artist name </span>
-        </a>
-      </div>
+    <div class="row1content">
+        <h2>line up: </h2>
+        <div class="venuelist">
+            <div th:each="artist:${party.artists}">
+                <a th:href="@{|/artistdetailsbyid/${artist.id}|}">
+                    <span th:text="${artist.artistName}">artist name </span>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="row1">
-  <div class="row1content">
-    <h2>wie gaat? </h2>
-
-    <div class="venuelist">
-      <div th:each="animal:${party.animals}">
-        <a th:href="@{|/animaldetails/${animal.id}|}">
-          <span th:text="${animal.name}">animal name </span>
-        </a>
-      </div>
+    <div class="row1content">
+        <h2>wie gaat? </h2>
+        <div class="venuelist">
+            <div th:each="animal:${party.animals}">
+                <a th:href="@{|/animaldetails/${animal.id}|}">
+                    <span th:text="${animal.name}">animal name </span>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 </body>
 </html>

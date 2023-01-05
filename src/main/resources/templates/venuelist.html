@@ -82,7 +82,7 @@
                 </form>
             </div>
             <div class="venuelist">
-                <a class="buttonlook mediumButton" th:unless="${showFilters}" href="/venuelist/filter">Filter</a>
+                <a class="buttonlook" th:unless="${showFilters}" href="/venuelist/filter">Filter</a>
                 <ul class="buttonlist">
                     <li th:each="venue, iStat:${venues}"><a th:href="@{|/venuedetails/*{venue.getId()}|}" href=""><span
                             th:text="|${venue.getVenueName()}|">venue name</span><br><span class="buttonlistunderscript"
