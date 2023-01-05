@@ -63,7 +63,7 @@
         <h2>line up: </h2>
         <div class="venuelist">
             <div th:each="artist:${party.artists}">
-                <a th:href="@{|/artistdetailsbyid/${artist.id}|}">
+                <a class="buttonLook mediumButton" th:href="@{|/artistdetailsbyid/${artist.id}|}">
                     <span th:text="${artist.artistName}">artist name </span>
                 </a>
             </div>
@@ -75,7 +75,7 @@
         <h2>wie gaat? </h2>
         <div class="venuelist">
             <div th:each="animal:${party.animals}">
-                <a th:href="@{|/animaldetails/${animal.id}|}">
+                <a class="buttonLook mediumButton" th:href="@{|/animaldetails/${animal.id}|}">
                     <span th:text="${animal.name}">animal name </span>
                 </a>
             </div>

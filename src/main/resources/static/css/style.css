@@ -12,6 +12,29 @@ p{
     color: #123456;
     font-size: 12px;
 }
+.buttonlook{
+    background-color: #999999;
+    color: white;
+    display: block;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+}
+.buttonlookhighlight{
+    background-color: deeppink;
+    font-weight: bold;
+    color: white;
+    display: block;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+}
 
 .container{
     width:80%;
